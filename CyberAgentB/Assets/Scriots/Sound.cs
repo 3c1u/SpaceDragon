@@ -63,7 +63,7 @@ public class Sound : MonoBehaviour
             sum += Mathf.Abs(data[i]); // データ（波形）の絶対値を足す
         }
         // データ数で割ったものに倍率をかけて音量とする
-        m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length);
+        m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length)*10000;
     }
 
     /*[SerializeField] Text volumetext;
