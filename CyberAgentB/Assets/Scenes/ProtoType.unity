@@ -282,6 +282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d280ad98318204db40b91016bbd479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBreath: 0
+  breathPower: 0
+  voicePower: 1
+  voicePitch: 0
 --- !u!1 &1643879333
 GameObject:
   m_ObjectHideFlags: 0

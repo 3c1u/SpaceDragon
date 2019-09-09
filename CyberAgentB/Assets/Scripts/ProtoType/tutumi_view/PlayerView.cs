@@ -21,7 +21,6 @@ public class PlayerView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GameController.Instance.Player.Voice.isActive);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (GameController.Instance.Player.Voice.isActive)
