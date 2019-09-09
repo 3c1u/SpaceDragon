@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ProtoType;
-using UnityEngine;
+﻿using ProtoType;
 
 public class GameController
 {
