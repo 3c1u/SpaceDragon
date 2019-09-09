@@ -38,5 +38,6 @@ public class PlayerView : MonoBehaviour
     {
         var _bullet = Instantiate(Bullet);
         _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
+        Destroy(_bullet, 5f);
     }
 }
