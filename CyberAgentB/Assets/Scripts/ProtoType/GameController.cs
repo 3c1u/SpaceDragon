@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ProtoType;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameObject Instance = new GameObject(); 
+    public PlayerModel Player = new PlayerModel();
+    public int Score = 0;
+    public int Time = 0;
+
+    public void AddScore(int score)
     {
-        
+        Score += score;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseTime()
     {
-        
+        Time++;
     }
+
 }
