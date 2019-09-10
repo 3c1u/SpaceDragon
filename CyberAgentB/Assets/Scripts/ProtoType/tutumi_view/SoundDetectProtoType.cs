@@ -20,25 +20,25 @@ public class SoundDetectProtoType : MonoBehaviour
         switch (state)
         {
             case SoundState.breath:
-                GameController.Instance.Player.Breath.isActive = true;
-                GameController.Instance.Player.Voice.isActive = false;
+                GameObject.Instance.Player.Breath.isActive = true;
+                GameObject.Instance.Player.Voice.isActive = false;
                 break;
             case SoundState.voice:
-                GameController.Instance.Player.Voice.isActive = true;
-                GameController.Instance.Player.Breath.isActive = false;
+                GameObject.Instance.Player.Voice.isActive = true;
+                GameObject.Instance.Player.Breath.isActive = false;
                 break;
             case SoundState.no_input:
-                GameController.Instance.Player.Voice.isActive = false;
-                GameController.Instance.Player.Breath.isActive = false;
+                GameObject.Instance.Player.Voice.isActive = false;
+                GameObject.Instance.Player.Breath.isActive = false;
                 break;
             default:
                 break;
 
         }
 
-        GameController.Instance.Player.Voice.Power = voicePower;
-        GameController.Instance.Player.Voice.Pitch = voicePitch;
+        GameObject.Instance.Player.Voice.Power = voicePower;
+        GameObject.Instance.Player.Voice.Pitch = voicePitch;
 
-        GameController.Instance.Player.Breath.Power = breathPower;
+        GameObject.Instance.Player.Breath.Power = breathPower;
     }
 }

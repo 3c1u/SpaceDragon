@@ -15,6 +15,6 @@ public class BulletView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0, 0, speed);
+        this.transform.position += new Vector3(speed, 0, 0);
     }
 }

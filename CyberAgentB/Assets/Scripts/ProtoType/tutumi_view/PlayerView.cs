@@ -6,8 +6,8 @@ using ProtoType;
 
 public class PlayerView : MonoBehaviour
 {
-    public GameObject Bullet;
-    public GameObject Fire;
+    public UnityEngine.GameObject Bullet;
+    public UnityEngine.GameObject Fire;
 
     Vector3 Pos;
     Quaternion Rot;
@@ -23,14 +23,22 @@ public class PlayerView : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GameController.Instance.Player.Voice.isActive)
+            if (GameObject.Instance.Player.Voice.isActive)
             {
-                LoanchBullet(GameController.Instance.Player.Voice.Power);
+                LoanchBullet(GameObject.Instance.Player.Voice.Power);
+                SetFirePower(0);
             }
-            else if(GameController.Instance.Player.Breath.isActive)
-            {
+        }
 
-            }
+        if (GameObject.Instance.Player.Breath.isActive)
+        {
+            SetFirePower(GameObject.Instance.Player.Breath.Power);
+            //Fire.SetActive(true);
+        }
+        else
+        {
+            SetFirePower(0);
+            //Fire.SetActive(false);
         }
     }
 
@@ -39,5 +47,15 @@ public class PlayerView : MonoBehaviour
         var _bullet = Instantiate(Bullet);
         _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
         Destroy(_bullet, 5f);
+    }
+
+    void SetFirePower(float power)
+    {
+        var out_fire = UnityEngine.GameObject.Find("out");
+        var in_fire = UnityEngine.GameObject.Find("in");
+
+        out_fire.GetComponent<ParticleSystem>().startLifetime = power;
+        in_fire.GetComponent<ParticleSystem>().startLifetime = power;
+
     }
 }

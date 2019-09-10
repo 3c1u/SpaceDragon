@@ -10,8 +10,8 @@ public class FireView : MonoBehaviour
 //        Debug.Log(other.gameObject.name);
     }
 
-    private void OnParticleCollision(GameObject other)
+    private void OnParticleCollision(UnityEngine.GameObject other)
     {
-        GameController.Instance.AddScore(1);
+        GameObject.Instance.AddScore(1);
     }
 }
