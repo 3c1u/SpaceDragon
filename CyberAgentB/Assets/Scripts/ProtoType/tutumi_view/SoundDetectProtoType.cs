@@ -6,7 +6,7 @@ using ProtoType;
 
 public class SoundDetectProtoType : MonoBehaviour
 {
-    [SerializeField] bool isBreath;
+    [SerializeField] SoundState state;
 
     [Header("Breath Data")]
     [SerializeField] float breathPower;
@@ -17,8 +17,24 @@ public class SoundDetectProtoType : MonoBehaviour
 
     private void Update()
     {
-        GameController.Instance.Player.Voice.isActive = !isBreath;
-        GameController.Instance.Player.Breath.isActive = isBreath;
+        switch (state)
+        {
+            case SoundState.breath:
+                GameController.Instance.Player.Breath.isActive = true;
+                GameController.Instance.Player.Voice.isActive = false;
+                break;
+            case SoundState.voice:
+                GameController.Instance.Player.Voice.isActive = true;
+                GameController.Instance.Player.Breath.isActive = false;
+                break;
+            case SoundState.no_input:
+                GameController.Instance.Player.Voice.isActive = false;
+                GameController.Instance.Player.Breath.isActive = false;
+                break;
+            default:
+                break;
+
+        }
 
         GameController.Instance.Player.Voice.Power = voicePower;
         GameController.Instance.Player.Voice.Pitch = voicePitch;
