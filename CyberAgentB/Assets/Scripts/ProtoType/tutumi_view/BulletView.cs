@@ -6,15 +6,23 @@ public class BulletView : MonoBehaviour
 {
     [SerializeField] float speed;
 
+    //Behaviour halo;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.position = new Vector3(0, 0, 0);
+        //halo = (Behaviour)this.transform.GetComponent("Halo");
+        this.transform.position = new Vector3(0, -1, -7);
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(speed, 0, 0);
+        this.transform.position += new Vector3(0, 0, speed);
     }
+
+    /*private void OnDestroy()
+    {
+        Destroy(halo);
+    }*/
 }

@@ -9,13 +9,13 @@ public class Sound : MonoBehaviour
     float m_volumeRate; // 音量(0-1)
     // Use this for initialization
 
-    [SerializeField] Text volumetext;
+    //[SerializeField] Text volumetext;
 
     bool ok = false;
 
     private AudioSource m_audioSource;
 
-    [SerializeField]
+    /*[SerializeField]
     private Slider frequencyBoundarySlider;
 
     [SerializeField]
@@ -25,7 +25,7 @@ public class Sound : MonoBehaviour
     private Slider lowerThreshold;
 
     [SerializeField]
-    private Text statusField;
+    private Text statusField;*/
 
     public bool isBlow = false;
 
@@ -59,7 +59,7 @@ public class Sound : MonoBehaviour
         }
         else
         {
-            volumetext.text = "許可降りてない";
+            //volumetext.text = "許可降りてない";
         }
 
 
@@ -102,17 +102,20 @@ public class Sound : MonoBehaviour
 
             if (m_volumeRate < 30)
             {
-                volumetext.text = 0 + "";
+                //volumetext.text = 0 + "";
             }
             else if(isBlow){
 
-                volumetext.text = 0 + "";
+                //volumetext.text = 0 + "";
 
             }else{
                 Debug.Log(m_volumeRate);
-                volumetext.text = m_volumeRate + "";
+                //volumetext.text = m_volumeRate + "";
             }
         }
+
+        GameController.Instance.Player.Breath.Power = m_volumeRate / 100.0f;
+        GameController.Instance.Player.Voice.Power = m_volumeRate / 100.0f;
 
 
     }

@@ -13,7 +13,7 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 
 	private VoiceInputState _currentState = VoiceInputState.Off;
 
-    [SerializeField] Text StateText;
+    //[SerializeField] Text StateText;
 
     private Sound soundscript;
 
@@ -89,7 +89,7 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 			_currentState = state;
             Debug.Log(state);
 
-            StateText.text = state + "";
+            //StateText.text = state + "";
 
             if(VoiceInputState.Blow==state){
 
@@ -100,6 +100,24 @@ public class MicrophoneSoundDetector : MonoBehaviour {
             }
 
 		}
+
+        switch(state){
+
+            case VoiceInputState.Off:
+                GameController.Instance.Player.Breath.isActive = false;
+                GameController.Instance.Player.Breath.isActive = false;
+                break;
+            case VoiceInputState.Blow:
+                GameController.Instance.Player.Breath.isActive = true;
+                GameController.Instance.Player.Voice.isActive = false;
+                break;
+            case VoiceInputState.Tonal:
+                GameController.Instance.Player.Breath.isActive = false;
+                GameController.Instance.Player.Voice.isActive = true;
+                break;
+            default:
+                break;
+        }
 	}
 
     
