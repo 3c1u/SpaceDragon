@@ -7,6 +7,6 @@ public class FireView : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other)
     {
-        GameController.Instance.AddScore(1);
+        GameObject.Instance.AddScore(1);
     }
 }
