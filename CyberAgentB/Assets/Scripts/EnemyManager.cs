@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     {
         GameTime = 0f;
 
-        IntervalTime = 2f;
+        IntervalTime = 3.5f;
         
     }
 
@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
 
             theta = Random.Range(0f, 360f);
 
-            phi = Random.Range(0, 180);
+            phi = Random.Range(0, 45);
 
             x = r * Mathf.Cos(Mathf.Deg2Rad*phi) * Mathf.Cos(Mathf.Deg2Rad*theta);
 

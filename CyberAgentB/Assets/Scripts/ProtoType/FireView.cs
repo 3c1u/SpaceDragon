@@ -59,6 +59,7 @@ public class FireView : MonoBehaviour
         Debug.Log(middleHP);
         if (middleHP <= 0)
         {
+            //Debug.Log("1");
             DestroyEnemy(other);
             Destroy(other.gameObject);
         }
@@ -66,13 +67,17 @@ public class FireView : MonoBehaviour
 
     private void DestroyEnemy(GameObject other)
     {
+        //Debug.Log("2");
         if (other.GetComponent<IceManager>())
         {
             GameController.Instance.AddScore(IceManager.Point);
+            //Debug.Log("氷かさん");
         }
         if (other.GetComponent<RockManager>())
         {
             GameController.Instance.AddScore(RockManager.Point);
+
+            //Debug.Log("イワかさん");
         }
     }
 
