@@ -11,7 +11,7 @@ public class AdaptiveDetectionStrategy : DetectorStrategy {
 		_fftSize = fftSize;
 	}
 
-	override public VoiceInputState Detect(float[] fft, int samplingRate) {
+	override public VoiceInputState Detect(float[] fft, int samplingRate, float deltaTime) {
 		throw new NotImplementedException();
 	}
 }

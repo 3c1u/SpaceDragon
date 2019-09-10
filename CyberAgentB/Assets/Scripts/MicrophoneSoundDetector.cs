@@ -109,6 +109,6 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 		// TODO: 周波数の取得
 		frequency = 0f;
 
-		return _strategy.Detect(fft_res, 44100);
+		return _strategy.Detect(fft_res, 44100, Time.deltaTime);
 	}
 }
