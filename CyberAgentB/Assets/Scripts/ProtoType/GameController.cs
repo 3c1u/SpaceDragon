@@ -1,9 +1,9 @@
 ﻿using ProtoType;
 using UnityEngine;
 
-public class GameObject
+public class GameController
 {
-    public static GameObject Instance = new GameObject(); 
+    public static GameController Instance = new GameController(); 
     public PlayerModel Player = new PlayerModel();
     public int Score = 0;
     public int Time = 0;

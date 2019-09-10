@@ -23,16 +23,16 @@ public class PlayerView : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GameObject.Instance.Player.Voice.isActive)
+            if (GameController.Instance.Player.Voice.isActive)
             {
-                LoanchBullet(GameObject.Instance.Player.Voice.Power);
+                LoanchBullet(GameController.Instance.Player.Voice.Power);
                 SetFirePower(0);
             }
         }
 
-        if (GameObject.Instance.Player.Breath.isActive)
+        if (GameController.Instance.Player.Breath.isActive)
         {
-            SetFirePower(GameObject.Instance.Player.Breath.Power);
+            SetFirePower(GameController.Instance.Player.Breath.Power);
             //Fire.SetActive(true);
         }
         else
