@@ -42,4 +42,15 @@ public class IceManager : MonoBehaviour
             Destroy(this);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+            Destroy(this.gameObject);
+
+            GameController.Instance.TakenDamage();
+        }
+    }
 }

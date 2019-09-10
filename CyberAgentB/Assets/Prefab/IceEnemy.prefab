@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 3063870519050168196}
   - component: {fileID: 3063870519053035428}
   - component: {fileID: 3063870519052068196}
-  - component: {fileID: 3063870519047705860}
   - component: {fileID: 5812481798360413684}
-  - component: {fileID: 3099306345252929133}
   - component: {fileID: 2996252706680967785}
+  - component: {fileID: 9125656739197077573}
   m_Layer: 0
   m_Name: IceEnemy
   m_TagString: Ice
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3063870519049812900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,20 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3063870519047705860
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063870519049812900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: ef4dd147aed784fc2968d63b72857249, type: 3}
 --- !u!114 &5812481798360413684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,19 +95,6 @@ MonoBehaviour:
   ratePercentage: 200
   HP: 100
   speed: 5
---- !u!65 &3099306345252929133
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3063870519049812900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 0.758036}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2996252706680967785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,3 +111,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &9125656739197077573
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063870519049812900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
