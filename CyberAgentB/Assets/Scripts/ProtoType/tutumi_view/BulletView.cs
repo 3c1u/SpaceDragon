@@ -46,7 +46,7 @@ public class BulletView : MonoBehaviour
                 {
                     middleHP = rockManager.HP - GameController.Instance.Player.Voice.Power;
 
-                    rockManager.HP = middleHP;
+                    rockManager.HP = (int) middleHP;
                 }
 
                 once = false;

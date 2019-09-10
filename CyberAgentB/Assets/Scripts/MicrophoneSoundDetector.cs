@@ -88,7 +88,7 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 
 		if (_currentState != state) {
 			_currentState = state;
-            Debug.Log(state);
+//            Debug.Log(state);
 		}
 
 		GameController.Instance.Player.Breath.isActive = state == VoiceInputState.Blow;

@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class FireView : MonoBehaviour
 {
-
-    IceManager iceManager;
-
-    float middleHP;
+    private IceManager _iceManager;
+    private RockManager _rockManager;
+    int middleHP;
 
     bool once;
 
@@ -19,37 +18,61 @@ public class FireView : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        GameController.Instance.AddScore(1);
-
-
-        Debug.Log("氷");
         if (other.gameObject.tag == "Ice")
         {
-            if (once)
-            {
-                Debug.Log("氷衝突している");
+                Debug.Log("氷");
+                var manager = other.GetComponent<IceManager>();
+                HitTarget(other);
+        }else if (other.gameObject.tag == "Rock")
+        {
+            Debug.Log("Rock");
+            HitTarget(other);
+        }
+    }
 
-                iceManager = other.gameObject.GetComponent<IceManager>();
+    private void HitTarget(GameObject other)
+    {
+        if (other.GetComponent<IceManager>())
+        {
+            _iceManager = other.gameObject.GetComponent<IceManager>();
+        }
 
-                Debug.Log(iceManager);
-
-                if (GameController.Instance.Player.Breath.isActive && iceManager)
-                {
-                    middleHP = iceManager.HP - GameController.Instance.Player.Breath.Power;
-
-                    iceManager.HP = middleHP;
-                }
-
-                once = false;
-                Debug.Log(middleHP);
-                if (middleHP <= 0)
-                {
-                    Destroy(other.gameObject);
-                }
-                Destroy(this.gameObject);
-            }
+        if (other.GetComponent<RockManager>())
+        {
+            _rockManager = other.gameObject.GetComponent<RockManager>();
+        }
 
 
+        if (GameController.Instance.Player.Breath.isActive && _iceManager)
+        {
+            middleHP = (int) (_iceManager.HP - (int)GameController.Instance.Player.Breath.Power * 10);
+            _iceManager.HP = (int) middleHP;
+        }
+
+        if (GameController.Instance.Player.Breath.isActive && _rockManager)
+        {
+            middleHP = _rockManager.HP - (int)GameController.Instance.Player.Breath.Power * 10;
+            _rockManager.HP = (int) middleHP;
+        }
+
+        once = false;
+        Debug.Log(middleHP);
+        if (middleHP <= 0)
+        {
+            DestroyEnemy(other);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void DestroyEnemy(GameObject other)
+    {
+        if (other.GetComponent<IceManager>())
+        {
+            GameController.Instance.AddScore(IceManager.Point);
+        }
+        if (other.GetComponent<RockManager>())
+        {
+            GameController.Instance.AddScore(RockManager.Point);
         }
     }
 
