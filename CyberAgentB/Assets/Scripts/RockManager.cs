@@ -13,9 +13,11 @@ public class RockManager : MonoBehaviour
 
     public float ratePercentage = 200f;
 
-    public float HP=100;
+    public int HP=100;
 
     public float damage;
+
+    public static int Point = 20;
 
     
     // Start is called before the first frame update
@@ -31,36 +33,20 @@ public class RockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(HP);
         //プレイヤーの方向に向かって移動していく
-        //Vector3 diff = new Vector3(target.transform.position.x - transform.position.x,0f,target.transform.position.z-transform.position.z); //プレイヤーと対照との差分を取得
 
-        //myRock.AddForce(diff * speed/ratePercentage);
+        transform.LookAt(target.transform);
 
-        this.transform.LookAt(target.transform);
+        transform.position += transform.forward * speed/ratePercentage;
 
-        this.transform.position += transform.forward * speed/ratePercentage;
-
-        if(this.transform.position.z<-2){
-            Destroy(this);
-        }
+//        if(transform.position.z<-2){
+//            Destroy(this);
+//        }
 
         if(HP<=0){
             Destroy(this);
         }
     }
-
-    /*private void OnTriggerEnter(Collider collider)
-    {
-
-        Debug.Log("衝突はしてるよ");
-
-        if (collider.gameObject.tag == "bullet")
-        {
-            HP -= GameController.Instance.Player.Voice.Power * 100;
-
-            Debug.Log("衝突！");
-
-            Destroy(collider.gameObject);
-        }
-    }*/
+    
 }

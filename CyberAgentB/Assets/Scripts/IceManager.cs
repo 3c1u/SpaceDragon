@@ -9,9 +9,11 @@ public class IceManager : MonoBehaviour
 
     public float ratePercentage = 200f;
 
-    public float HP = 100;
+    public int HP = 100;
 
     [SerializeField] float speed = 5;
+
+    public static int Point = 10;
 
 
     // Start is called before the first frame update
@@ -39,6 +41,5 @@ public class IceManager : MonoBehaviour
         {
             Destroy(this);
         }
-
     }
 }

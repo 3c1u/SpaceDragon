@@ -8,6 +8,8 @@ public class PlayerView : MonoBehaviour
 {
     public UnityEngine.GameObject Bullet;
     public UnityEngine.GameObject Fire;
+    [SerializeField] private ParticleSystem out_fire;
+    [SerializeField] private ParticleSystem in_fire;
 
     Vector3 Pos;
     Quaternion Rot;
@@ -23,24 +25,19 @@ public class PlayerView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-            if (GameController.Instance.Player.Voice.isActive)
-            {
-            once = true;
+        if (GameController.Instance.Player.Voice.isActive)
+        {
+                once = true;
                 LoanchBullet(GameController.Instance.Player.Voice.Power);
                 SetFirePower(0);
             }
-
-
-        if (GameController.Instance.Player.Breath.isActive)
+            if (GameController.Instance.Player.Breath.isActive)
         {
             SetFirePower(GameController.Instance.Player.Breath.Power);
-            //Fire.SetActive(true);
         }
         else
         {
             SetFirePower(0);
-            //Fire.SetActive(false);
         }
     }
 
@@ -48,14 +45,11 @@ public class PlayerView : MonoBehaviour
     {
         if (once)
         {
-            if (Power < 0.3)
-            { }
-            else
+            if (!(Power < 0.3))
             {
                 var _bullet = Instantiate(Bullet);
                 _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
                 Destroy(_bullet, 1f);
-
                 once = false;
             }
             
@@ -64,9 +58,6 @@ public class PlayerView : MonoBehaviour
 
     void SetFirePower(float power)
     {
-        var out_fire = GameObject.Find("out");
-        var in_fire = GameObject.Find("in");
-
         out_fire.GetComponent<ParticleSystem>().startLifetime = power;
         in_fire.GetComponent<ParticleSystem>().startLifetime = power;
 
