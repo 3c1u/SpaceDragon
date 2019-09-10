@@ -8,7 +8,7 @@ using UnityEngine;
 public class LifesView : MonoBehaviour
 {
     private int LifeCount => GameController.Instance.LifeCount;
-    private List<GameObject> LifeList = new List<GameObject>();
+    Queue<GameObject> _lifeQueue =  new Queue<GameObject>();
     
     private void Start()
     {
@@ -20,7 +20,7 @@ public class LifesView : MonoBehaviour
                 Quaternion.identity);
             instance.transform.localScale = new Vector3(0.02f,0.02f,0.02f);
             instance.gameObject.transform.parent = transform;
-            LifeList.Add(instance);
+            _lifeQueue.Enqueue(instance);
         }
 
         GameController.Instance.TakenDamageAction = DestroyLife();
@@ -30,8 +30,9 @@ public class LifesView : MonoBehaviour
     {
         return () =>
         {
-            var life = LifeList.First();
-            life.gameObject.SetActive(false);
+            var life = _lifeQueue.Peek();
+            Destroy(life.gameObject);
+            _lifeQueue.Dequeue();
         };
     }
 

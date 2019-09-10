@@ -40,12 +40,13 @@ public class GameController
 
     public void TakenDamage()
     {
+        LifeCount--;
+        TakenDamageAction?.Invoke();
         if (LifeCount <= 0)
         {
             GameOver();
+            return;
         }
-        LifeCount--;
-        TakenDamageAction?.Invoke();
     }
 
     public void ChangeSceneResult()
