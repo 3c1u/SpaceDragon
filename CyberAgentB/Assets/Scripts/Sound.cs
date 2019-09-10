@@ -66,7 +66,7 @@ public class Sound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var spectrum = new float[1024];
+        /*var spectrum = new float[1024];
 
         m_audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Blackman);
 
@@ -94,13 +94,25 @@ public class Sound : MonoBehaviour
 
         statusField.text = frequencyBoundary + " Hz, lower: " + lowerThreshold.value
                             + " (" + (lower > lowerThreshold.value) + "), higher: "
-                            + upperThreshold.value + " (" + (upper > upperThreshold.value) + ")";
+                            + upperThreshold.value + " (" + (upper > upperThreshold.value) + ")";*/
+
+        if(ok){
+
+            if (m_volumeRate < 30)
+            {
+                volumetext.text = 0 + "";
+            }
+            else
+            {
+                Debug.Log(m_volumeRate);
+                volumetext.text = m_volumeRate + "";
+            }
+        }
 
 
     }
 
-    // オーディオが読まれるたびに実行される
-    /* private void OnAudioFilterRead(float[] data, int channels)
+    private void OnAudioFilterRead(float[] data, int channels)
     {
         float sum = 0f;
         for (int i = 0; i < data.Length; ++i)
@@ -108,8 +120,8 @@ public class Sound : MonoBehaviour
             sum += Mathf.Abs(data[i]); // データ（波形）の絶対値を足す
         }
         // データ数で割ったものに倍率をかけて音量とする
-        m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length) * 10000;
-    } *?
+        m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length) * 1000;
+    } 
 
     /*[SerializeField] Text volumetext;
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MicrophoneSoundDetector : MonoBehaviour {
 	[SerializeField] private AudioSource audioSource;
@@ -11,6 +12,9 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	private SimpleDetectionStrategy _strategy = new SimpleDetectionStrategy();
 
 	private VoiceInputState _currentState = VoiceInputState.Off;
+
+    [SerializeField] Text StateText;
+
 
 	public enum VoiceInputState {
 		/// <summary>
@@ -79,7 +83,10 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 
 		if (_currentState != state) {
 			_currentState = state;
-			Debug.Log(state);
+            Debug.Log(state);
+
+            StateText.text = state + "";
+
 		}
 	}
 
