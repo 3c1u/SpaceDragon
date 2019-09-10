@@ -51,8 +51,8 @@ public class PlayerView : MonoBehaviour
 
     void SetFirePower(float power)
     {
-        var out_fire = UnityEngine.GameObject.Find("out");
-        var in_fire = UnityEngine.GameObject.Find("in");
+        var out_fire = GameObject.Find("out");
+        var in_fire = GameObject.Find("in");
 
         out_fire.GetComponent<ParticleSystem>().startLifetime = power;
         in_fire.GetComponent<ParticleSystem>().startLifetime = power;

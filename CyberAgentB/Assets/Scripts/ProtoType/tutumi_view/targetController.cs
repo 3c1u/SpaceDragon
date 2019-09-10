@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class targetController : MonoBehaviour
 {
-    [SerializeField] UnityEngine.GameObject target;
+    [SerializeField] GameObject target;
 
     float t = 0;
     // Start is called before the first frame update
