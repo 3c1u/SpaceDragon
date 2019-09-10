@@ -11,6 +11,7 @@ public class BulletView : MonoBehaviour
     RockManager rockManager;
 
     float middleHP;
+    Vector3 forwardVec;
 
     bool once;
 
@@ -18,7 +19,8 @@ public class BulletView : MonoBehaviour
     void Start()
     {
         //halo = (Behaviour)this.transform.GetComponent("Halo");
-        this.transform.position = Camera.main.transform.forward - 0.6f * Camera.main.transform.up;
+        forwardVec = Camera.main.transform.forward;
+        this.transform.position = 1.0f * forwardVec - 0.6f * Camera.main.transform.up;
 
         once = true;
     }
@@ -27,7 +29,7 @@ public class BulletView : MonoBehaviour
     void Update()
     {
         // パフォーマンス的におｋ？
-        this.transform.position += speed * Camera.main.transform.forward;
+        this.transform.position += speed * forwardVec;
     }
 
     private void OnTriggerEnter(Collider other)
