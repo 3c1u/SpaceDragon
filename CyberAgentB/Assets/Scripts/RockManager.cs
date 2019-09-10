@@ -15,15 +15,16 @@ public class RockManager : MonoBehaviour
 
     public float HP=100;
 
+    public float damage;
+
     
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindWithTag("Player");
-        myRock = GetComponent<Rigidbody>();
+
         Debug.Log("Start完了");
         Debug.Log(target);
-        Debug.Log(myRock);
 
     }
 
@@ -48,10 +49,18 @@ public class RockManager : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnTriggerEnter(Collider collider)
     {
-        HP -= GameController.Instance.Player.Voice.Power * 100;
 
-        Debug.Log("衝突！");
-    }
+        Debug.Log("衝突はしてるよ");
+
+        if (collider.gameObject.tag == "bullet")
+        {
+            HP -= GameController.Instance.Player.Voice.Power * 100;
+
+            Debug.Log("衝突！");
+
+            Destroy(collider.gameObject);
+        }
+    }*/
 }
