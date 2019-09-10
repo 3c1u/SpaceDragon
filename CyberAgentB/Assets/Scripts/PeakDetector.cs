@@ -46,7 +46,7 @@ public class PeakDetector {
     // アタック・リリースの値に基づいて係数を計算する
 
     _attackCoef = - 1.0f / _attackSec;
-    _releaseCoef = - 1.0f / _releaseCoef;
+    _releaseCoef = - 1.0f / _releaseSec;
   }
 
   public void UpdateValue(float value, float deltaTime) {
@@ -54,7 +54,7 @@ public class PeakDetector {
       // しきい値以下の場合、値を減算処理
       _currentValue *= Mathf.Exp(_releaseCoef * deltaTime);
     } else {
-      _currentValue = 1 - (1 - _currentValue) * Mathf.Exp(_attackCoef * deltaTime);
+      _currentValue = 1.0f - (1.0f - _currentValue) * Mathf.Exp(_attackCoef * deltaTime);
     }
   }
 

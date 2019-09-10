@@ -7,5 +7,5 @@ public abstract class DetectorStrategy {
 	/// <param name="fft">FFTの結果</param>
 	/// <param name="samplingRate">サンプリングレート</param>
 	/// <returns></returns>
-	abstract public VoiceInputState Detect(float[] fft, int samplingRate);
+	abstract public VoiceInputState Detect(float[] fft, int samplingRate, float deltaTime);
 }
