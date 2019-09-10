@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Fire
+=======
+  tags: []
+>>>>>>> 60eda24d480be4fbb97919be472c7a1a9af9f45d
   layers:
   - Default
   - TransparentFX

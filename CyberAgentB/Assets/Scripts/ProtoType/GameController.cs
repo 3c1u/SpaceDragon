@@ -1,15 +1,14 @@
 ﻿using System;
 using ProtoType;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController
 {
     public static GameController Instance = new GameController(); 
     public PlayerModel Player = new PlayerModel();
-    public int LimitTime = 10;
     public int Score = 0;
     public int Time = 10;
-    public int MaxLife = 3;
     public int LifeCount = 3;
     public Action TakenDamageAction;
 
@@ -27,15 +26,24 @@ public class GameController
         }
     }
 
-    public void GameOver()
-    {
+    public void GameOver(){
+    
         Debug.Log("GameOver!!");
     }
 
     public void TakenDamage()
     {
+        if (LifeCount <= 0)
+        {
+            GameOver();
+        }
         LifeCount--;
         TakenDamageAction?.Invoke();
+    }
+
+    public void ChangeSceneResult()
+    {
+        SceneManager.LoadScene("");
     }
 
 }

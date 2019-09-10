@@ -129,7 +129,7 @@ public class Sound : MonoBehaviour
         }
         // データ数で割ったものに倍率をかけて音量とする
         m_volumeRate = Mathf.Clamp01(sum * m_gain / (float)data.Length) * 1000;
-    } 
+    }
 
     /*[SerializeField] Text volumetext;
 
