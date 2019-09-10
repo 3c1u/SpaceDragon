@@ -79,6 +79,7 @@ namespace SceneController {
       // ゲームの初期化
       
       // ステージ画面に遷移
+      SceneManager.LoadScene("Scenes/PreStageIntro");
     }
 
     IEnumerator BlinkMessage() {
