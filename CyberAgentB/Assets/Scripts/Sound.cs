@@ -78,6 +78,10 @@ public class Sound : MonoBehaviour
         for (int i = 0; i < spectrum.Length; i++)
         {
             var targetFrequency = i * 22050.0 / spectrum.Length;
+
+            if(targetFrequency>2000.0){
+                break;
+            }
             if (frequencyBoundary < targetFrequency)
             {
                 upper += spectrum[i];
@@ -91,6 +95,8 @@ public class Sound : MonoBehaviour
         statusField.text = frequencyBoundary + " Hz, lower: " + lowerThreshold.value
                             + " (" + (lower > lowerThreshold.value) + "), higher: "
                             + upperThreshold.value + " (" + (upper > upperThreshold.value) + ")";
+
+
     }
 
     // オーディオが読まれるたびに実行される
