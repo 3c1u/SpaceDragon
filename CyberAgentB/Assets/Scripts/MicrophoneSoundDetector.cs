@@ -62,6 +62,10 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 			audioSource.clip = Microphone.Start("", true, 1, samplingRate);
 			audioSource.loop = true;
 
+			// 遅延を0にする
+			while (!(Microphone.GetPosition("") > 0))
+				;
+
 			audioSource.Play();
 		} else {
 			Debug.LogError("マイクの取得に失敗しました。");
