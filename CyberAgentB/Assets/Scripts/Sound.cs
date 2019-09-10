@@ -27,6 +27,8 @@ public class Sound : MonoBehaviour
     [SerializeField]
     private Text statusField;
 
+    public bool isBlow = false;
+
     void Start()
     {
 
@@ -102,8 +104,11 @@ public class Sound : MonoBehaviour
             {
                 volumetext.text = 0 + "";
             }
-            else
-            {
+            else if(isBlow){
+
+                volumetext.text = 0 + "";
+
+            }else{
                 Debug.Log(m_volumeRate);
                 volumetext.text = m_volumeRate + "";
             }

@@ -15,6 +15,8 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 
     [SerializeField] Text StateText;
 
+    private Sound soundscript;
+
 
 	public enum VoiceInputState {
 		/// <summary>
@@ -34,6 +36,8 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	IEnumerator Start() {
 		// マイクの取得
 		yield return ObtainMicrophone();
+
+        soundscript = this.GetComponent<Sound>();
 
 		// TODO: ディテクターストラテジーの初期化が必要なら、ここでやる。　
 	}
@@ -87,8 +91,18 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 
             StateText.text = state + "";
 
+            if(VoiceInputState.Blow==state){
+
+                soundscript.isBlow = true;
+
+            }else{
+                soundscript.isBlow = false;
+            }
+
 		}
 	}
+
+    
 
 	void OnAudioFilterRead(float[] data, int channels) {
 		// TODO: 高速なFFTをするならコレを使うことになる？
