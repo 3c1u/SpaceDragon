@@ -15,7 +15,6 @@ public class GameController
 
     public void IncreaseTime()
     {
-        Debug.Log(Time);
         Time++;
     }
 
