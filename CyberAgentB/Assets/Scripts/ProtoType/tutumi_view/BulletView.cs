@@ -18,7 +18,7 @@ public class BulletView : MonoBehaviour
     void Start()
     {
         //halo = (Behaviour)this.transform.GetComponent("Halo");
-        this.transform.position = new Vector3(0, -1, -7);
+        this.transform.position = Camera.main.transform.forward - 0.6f * Camera.main.transform.up;
 
         once = true;
     }
@@ -26,7 +26,8 @@ public class BulletView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0, 0, speed);
+        // パフォーマンス的におｋ？
+        this.transform.position += speed * Camera.main.transform.forward;
     }
 
     private void OnTriggerEnter(Collider other)
