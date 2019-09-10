@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,11 @@ namespace SceneController {
     private                  bool  isAnimating     = false;
     private                  bool  isFadeIn        = false;
     private                  float opacity         = 1.0f;
+
+    [SerializeField] private Text  blinkText;
+
+    [SerializeField] private Color darkTextColour;
+    [SerializeField] private Color brightTextColour;
 
     private bool sceneTransitionFlag = false;
 
@@ -45,6 +51,8 @@ namespace SceneController {
         if (opacity <= 0) {
           opacity     = 0;
           isAnimating = false;
+          
+          StartCoroutine(nameof(BlinkMessage));
         }
       }
       else {
@@ -55,8 +63,7 @@ namespace SceneController {
           isAnimating = false;
 
           if (sceneTransitionFlag) {
-            // TODO: シーン遷移
-            ResultScreen.InvokeResultScreen(10000, "A+", true);
+            SwitchToGameScene();
           }
         }
       }
@@ -64,6 +71,37 @@ namespace SceneController {
       var prevColor = fadePlane.color;
       prevColor.a = opacity;
       fadePlane.color = prevColor;
+    }
+
+    void SwitchToGameScene() {
+      StopCoroutine(nameof(BlinkMessage));
+      
+      // ゲームの初期化
+      
+      // ステージ画面に遷移
+    }
+
+    IEnumerator BlinkMessage() {
+      while (true) {
+        iTween.ColorTo(blinkText.gameObject, iTween.Hash(
+                                                         "from", darkTextColour,
+                                                         "to", brightTextColour,
+                                                         "onupdate", "UpdateTextColour",
+                                                         "time", 0.3f
+                                                         ));
+        yield return new WaitForSeconds(0.5f);
+        iTween.ColorTo(blinkText.gameObject, iTween.Hash(
+                                                         "from", brightTextColour,
+                                                         "to", darkTextColour,
+                                                         "onupdate", "UpdateTextColour",
+                                                         "time", 0.3f
+                                                        ));
+        yield return new WaitForSeconds(0.5f);
+      }
+    }
+
+    void UpdateTextColour(Color colour) {
+      blinkText.color = colour;
     }
   }
 }

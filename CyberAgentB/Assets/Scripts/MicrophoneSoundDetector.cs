@@ -9,7 +9,7 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	private int _samplingRate = 44100;
 
 	private const int FFT_SIZE = 1024;
-	private SimpleDetectionStrategy _strategy = new SimpleDetectionStrategy();
+	private DetectorStrategy _strategy = new SimpleDetectionStrategy();
 
 	private VoiceInputState _currentState = VoiceInputState.Off;
 

@@ -37,13 +37,15 @@ public class ResultScreen : MonoBehaviour {
   }
 
   void Update() {
+    // 最初の画面の表示を行う
     if (!_initialAnimation) {
       _initialAnimation = true;
-      StartCoroutine(nameof(StartupAnimation));
+      StartCoroutine(StartupAnimation());
     };
     
+    // ボタンが押された・タップされた場合にシーン遷移する。
     if (Input.GetMouseButtonDown(0) && !_replayTransitionFlag) {
-      StartCoroutine(nameof(ReplayTransition));
+      StartCoroutine(ReplayTransition());
     }
       
     for (var i = 0; i < Input.touchCount; i++) {
@@ -52,6 +54,8 @@ public class ResultScreen : MonoBehaviour {
       
       StartCoroutine(nameof(ReplayTransition));
     }
+    
+    // TODO: VR時にシーン遷移を検知したい
   }
 
   IEnumerator ReplayTransition() {

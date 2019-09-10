@@ -267,6 +267,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadePlane: {fileID: 338338757}
   fadeCoefficient: 0.6
+  blinkText: {fileID: 881200508}
+  darkTextColour: {r: 1, g: 0.6068679, b: 0, a: 1}
+  brightTextColour: {r: 1, g: 0.9201765, b: 0.7971698, a: 1}
 --- !u!1 &881200506
 GameObject:
   m_ObjectHideFlags: 0
