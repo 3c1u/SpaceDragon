@@ -12,6 +12,13 @@ public class GameController
     public int LifeCount = 3;
     public Action TakenDamageAction;
 
+    public void Reset() {
+        Player = new PlayerModel();
+        Score = 0;
+        Time = 10;
+        LifeCount = 3;
+    }
+
     public void AddScore(int score)
     {
         Score += score;
