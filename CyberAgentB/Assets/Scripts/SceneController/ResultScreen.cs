@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -52,7 +52,7 @@ public class ResultScreen : MonoBehaviour {
       if (_replayTransitionFlag)
         break;
       
-      StartCoroutine(nameof(ReplayTransition));
+      StartCoroutine(ReplayTransition());
     }
     
     // TODO: VR時にシーン遷移を検知したい
@@ -69,7 +69,7 @@ public class ResultScreen : MonoBehaviour {
       yield return new WaitForSeconds(0.01f);
     }
     
-    // TODO: シーン遷移する
+    // シーン遷移する
     SceneManager.LoadScene("Scenes/Start");
   }
   

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2340393684589679307}
   - component: {fileID: 7987585597112715498}
   - component: {fileID: 2710061792833782757}
+  - component: {fileID: 2307141722576435512}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027250672373482262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,3 +105,16 @@ Halo:
     serializedVersion: 2
     rgba: 4293403369
   m_Size: 1
+--- !u!114 &2307141722576435512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027250672373482262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba930a78a829824a9c1139ec5541b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

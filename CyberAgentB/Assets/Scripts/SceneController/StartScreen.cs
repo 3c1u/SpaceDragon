@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -52,7 +52,7 @@ namespace SceneController {
           opacity     = 0;
           isAnimating = false;
           
-          StartCoroutine(nameof(BlinkMessage));
+          StartCoroutine(BlinkMessage());
         }
       }
       else {
@@ -74,7 +74,7 @@ namespace SceneController {
     }
 
     void SwitchToGameScene() {
-      StopCoroutine(nameof(BlinkMessage));
+      StopCoroutine(BlinkMessage());
       
       // ゲームの初期化
       

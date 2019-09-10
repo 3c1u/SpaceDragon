@@ -12,23 +12,25 @@ public class PlayerView : MonoBehaviour
     Vector3 Pos;
     Quaternion Rot;
 
+    bool once;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        once = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+       
             if (GameController.Instance.Player.Voice.isActive)
             {
+            once = true;
                 LoanchBullet(GameController.Instance.Player.Voice.Power);
                 SetFirePower(0);
             }
-        }
+
 
         if (GameController.Instance.Player.Breath.isActive)
         {
@@ -44,9 +46,20 @@ public class PlayerView : MonoBehaviour
 
     void LoanchBullet(float Power)
     {
-        var _bullet = Instantiate(Bullet);
-        _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
-        Destroy(_bullet, 5f);
+        if (once)
+        {
+            if (Power < 0.3)
+            { }
+            else
+            {
+                var _bullet = Instantiate(Bullet);
+                _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
+                Destroy(_bullet, 1f);
+
+                once = false;
+            }
+            
+        }
     }
 
     void SetFirePower(float power)
