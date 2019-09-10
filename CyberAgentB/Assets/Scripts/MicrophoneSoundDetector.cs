@@ -5,18 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MicrophoneSoundDetector : MonoBehaviour {
-	[SerializeField] private AudioSource audioSource;
-	private int _samplingRate = 44100;
+	[SerializeField] private AudioSource      audioSource;
+	[SerializeField] private float            gain             = 1.0f;
+	private                  int              _samplingRate    = 44100;
 
-	private const int FFT_SIZE = 1024;
-	private DetectorStrategy _strategy = new SimpleDetectionStrategy();
+	private const            int              FFT_SIZE         = 1024;
+	private                  DetectorStrategy _strategy        = CreateDetectionStrategy();
 
-	private VoiceInputState _currentState = VoiceInputState.Off;
+	private                  VoiceInputState  _currentState    = VoiceInputState.Off;
+	private                  float[]          _fftResultBuffer = new float[FFT_SIZE];
 
-    //[SerializeField] Text StateText;
-
-    private Sound soundscript;
-
+	private                  float            _volumeRate      = 0f;
 
 	public enum VoiceInputState {
 		/// <summary>
@@ -36,10 +35,12 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	IEnumerator Start() {
 		// マイクの取得
 		yield return ObtainMicrophone();
+	}
 
-        soundscript = this.GetComponent<Sound>();
+	static DetectorStrategy CreateDetectionStrategy() {
+		// ディテクターストラテジーの初期化が必要なら、ここでやる。　
 
-		// TODO: ディテクターストラテジーの初期化が必要なら、ここでやる。　
+		return new SimpleDetectionStrategy();
 	}
 
 	IEnumerator ObtainMicrophone() {
@@ -83,47 +84,32 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	}
 
 	void Update() {
-		var state = Detect(audioSource, out _);
+		var state = Detect(audioSource);
 
 		if (_currentState != state) {
 			_currentState = state;
             Debug.Log(state);
-
-            //StateText.text = state + "";
-
-            if(VoiceInputState.Blow==state){
-
-                soundscript.isBlow = true;
-
-            }else{
-                soundscript.isBlow = false;
-            }
-
 		}
 
-        switch(state){
+		GameController.Instance.Player.Breath.isActive = state == VoiceInputState.Blow;
+		GameController.Instance.Player.Voice.isActive = state == VoiceInputState.Tonal;
 
-            case VoiceInputState.Off:
-                GameController.Instance.Player.Breath.isActive = false;
-                GameController.Instance.Player.Breath.isActive = false;
-                break;
-            case VoiceInputState.Blow:
-                GameController.Instance.Player.Breath.isActive = true;
-                GameController.Instance.Player.Voice.isActive = false;
-                break;
-            case VoiceInputState.Tonal:
-                GameController.Instance.Player.Breath.isActive = false;
-                GameController.Instance.Player.Voice.isActive = true;
-                break;
-            default:
-                break;
-        }
+		GameController.Instance.Player.Breath.Power = _volumeRate / 100.0f;
+        GameController.Instance.Player.Voice.Power = _volumeRate / 100.0f;
 	}
 
-    
-
 	void OnAudioFilterRead(float[] data, int channels) {
-		// TODO: 高速なFFTをするならコレを使うことになる？
+		// TODO: 高速なFFTをするならここでNative？
+
+		// ゲインの検出（RMS）
+		float sum = 0;
+
+        for (int i = 0; i < data.Length; ++i) {
+            sum += Mathf.Pow(data[i], 2);
+        }
+
+        // データ数で割ったものに倍率をかけて音量とする
+        _volumeRate = Mathf.Clamp01(Mathf.Sqrt(sum) * gain / (float)data.Length) * 25000;
 	}
 
 	/// <summary>
@@ -132,15 +118,9 @@ public class MicrophoneSoundDetector : MonoBehaviour {
 	/// <param name="source">オーディオソース</param>
 	/// <param name="frequency">周波数の出力（検出された場合）</param>
 	/// <returns></returns>
-	VoiceInputState Detect(AudioSource source, out float frequency) {
+	VoiceInputState Detect(AudioSource source) {
 		// FFTの結果を取り出す。（ローレイテンシーで動かすにはNativeの力が必要...?）
-
-		var fft_res = new float[FFT_SIZE];
-		source.GetSpectrumData(fft_res, 0, FFTWindow.Blackman);
-
-		// TODO: 周波数の取得
-		frequency = 0f;
-
-		return _strategy.Detect(fft_res, 44100, Time.deltaTime);
+		source.GetSpectrumData(_fftResultBuffer, 0, FFTWindow.Blackman);
+		return _strategy.Detect(_fftResultBuffer, 44100, Time.deltaTime);
 	}
 }
