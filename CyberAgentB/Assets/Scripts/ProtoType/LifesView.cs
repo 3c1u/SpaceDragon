@@ -30,9 +30,12 @@ public class LifesView : MonoBehaviour
     {
         return () =>
         {
-            var life = _lifeQueue.Peek();
-            Destroy(life.gameObject);
-            _lifeQueue.Dequeue();
+            if (_lifeQueue != null)
+            {
+                var life = _lifeQueue.Peek();
+                Destroy(life.gameObject);
+                _lifeQueue.Dequeue();
+            }
         };
     }
 
