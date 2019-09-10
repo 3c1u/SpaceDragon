@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5524496906917390005}
   - component: {fileID: 5524496906917390004}
   - component: {fileID: 5524496906917390011}
+  - component: {fileID: 5296678658888360897}
   m_Layer: 0
   m_Name: in
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5524496906917390010}
   m_LocalRotation: {x: -0.49872586, y: -0.5012709, z: 0.501271, w: 0.49872586}
-  m_LocalPosition: {x: 4.7389255, y: -1.7179039, z: 0.19103032}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 3.5324452}
   m_Children: []
   m_Father: {fileID: 662904952403313116}
@@ -3541,9 +3542,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -4739,6 +4740,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!54 &5296678658888360897
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524496906917390010}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5524496907867089884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4751,6 +4768,7 @@ GameObject:
   - component: {fileID: 5524496907867089886}
   - component: {fileID: 5524496907867089885}
   - component: {fileID: 1105578341716485664}
+  - component: {fileID: 3827473663854254440}
   m_Layer: 0
   m_Name: out
   m_TagString: Untagged
@@ -4766,7 +4784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5524496907867089884}
   m_LocalRotation: {x: -0.49872586, y: -0.5012709, z: 0.501271, w: 0.49872586}
-  m_LocalPosition: {x: 4.7389255, y: -1.7179039, z: 0.19103032}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5161512, y: 1.2564609, z: 3.506659}
   m_Children: []
   m_Father: {fileID: 662904952403313116}
@@ -8251,7 +8269,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -9403,7 +9421,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 04620f4e743fb4dcf8ddb95d348e6d64, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9459,3 +9477,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24370a9ca6fef417e85c2f48f5873390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &3827473663854254440
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524496907867089884}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
