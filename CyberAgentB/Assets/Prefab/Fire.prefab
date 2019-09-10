@@ -4750,6 +4750,7 @@ GameObject:
   - component: {fileID: 5524496907867089887}
   - component: {fileID: 5524496907867089886}
   - component: {fileID: 5524496907867089885}
+  - component: {fileID: 1105578341716485664}
   m_Layer: 0
   m_Name: out
   m_TagString: Untagged
@@ -8248,7 +8249,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 0
     collisionMode: 0
@@ -8430,7 +8431,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9446,3 +9447,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1105578341716485664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524496907867089884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24370a9ca6fef417e85c2f48f5873390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

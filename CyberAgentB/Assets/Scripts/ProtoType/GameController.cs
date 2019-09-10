@@ -1,4 +1,5 @@
 ﻿using ProtoType;
+using UnityEngine;
 
 public class GameController
 {
@@ -7,14 +8,14 @@ public class GameController
     public int Score = 0;
     public int Time = 0;
 
-    public void SetTime(int time)
-    {
-        Time = time;
-    }
-
     public void AddScore(int score)
     {
-        Score = score;
+        Score += score;
+    }
+
+    public void IncreaseTime()
+    {
+        Time++;
     }
 
 }
