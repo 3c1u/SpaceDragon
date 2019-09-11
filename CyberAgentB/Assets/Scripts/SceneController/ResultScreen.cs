@@ -25,6 +25,7 @@ public class ResultScreen : MonoBehaviour {
 
   private bool _replayTransitionFlag = false;
   private bool _blowTransitionFlag = false;
+  private bool _blowEnabled = false;
   
   public static void InvokeResultScreen(int score, string rank, bool isNewRecord) {
     _score = score;
@@ -49,7 +50,9 @@ public class ResultScreen : MonoBehaviour {
     };
 
     // VR時にシーン遷移を検知してシーン遷移
-    if (GameController.Instance.Player.Breath.isActive && !_blowTransitionFlag) {
+    if (GameController.Instance.Player.Breath.isActive
+        && !_blowTransitionFlag
+        && _blowEnabled) {
       _blowTransitionFlag = false;
       StartCoroutine(BlowDetection());
       progressCircle.fillAmount += 1.0f * Time.deltaTime;
@@ -131,8 +134,10 @@ public class ResultScreen : MonoBehaviour {
     }
     
     tapToReplayLabel.SetActive(true);
-    // SlideFromBottom(tapToReplayLabel);
+    SlideFromBottom(tapToReplayLabel);
     yield return new WaitForSeconds(1.0f);
+
+    _blowEnabled = true;
   }
 
   void SlideFromLeft(GameObject o, float delay = 0) {
