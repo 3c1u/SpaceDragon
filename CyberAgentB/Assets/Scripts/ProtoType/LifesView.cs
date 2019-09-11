@@ -18,9 +18,9 @@ public class LifesView : MonoBehaviour
         {
             var obj =  Resources.LoadAsync("Life");
             var instance = (GameObject)Instantiate(obj.asset,
-                new Vector3(0.0f, 0.0f, 0.0f),
+                transform.position,
                 Quaternion.identity);
-            instance.transform.localScale = new Vector3(0.02f,0.02f,0.02f);
+            instance.transform.localScale = new Vector3(1f,1f,1f);
             instance.gameObject.transform.parent = transform;
             _lifeQueue.Enqueue(instance);
         }
