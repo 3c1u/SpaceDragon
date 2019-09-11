@@ -83,9 +83,13 @@ public class ResultScreen : MonoBehaviour {
     for (int i = 0; i <= _score; i++) {
       // いい感じに増えてる演出がしたい
       if (i < (_score >> 1))
-        i += 114;
+        i += _score >> 4 + 1;
       else if (i < (_score - 60))
-        i += 66;
+        i += _score >> 5 + 1;
+      
+      if (_score < i) {
+        i = _score;
+      }
       
       scoreField.text = i.ToString("D6");
       yield return new WaitForSeconds(0.01f);

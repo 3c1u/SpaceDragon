@@ -31,7 +31,7 @@ public class PreStageScreen : MonoBehaviour
             _state = PreStageState.BlowWaiting;
             _blowingTime += Time.deltaTime;
 
-            progressField.text = (3 - Mathf.FloorToInt(_blowingTime)) + "";
+            progressField.text = "Good!";
         } else {
             _state = PreStageState.NotDetected;
             _blowingTime = 0f;
@@ -39,8 +39,8 @@ public class PreStageScreen : MonoBehaviour
             progressField.text = "Waiting...";
         }
 
-        if (_blowingTime >= 3.0f) {
-            _blowingTime = 3.0f;
+        if (_blowingTime >= 1.0f) {
+            _blowingTime = 1.0f;
             _state = PreStageState.End;
             
             progressCircle.gameObject.SetActive(false);
@@ -49,7 +49,7 @@ public class PreStageScreen : MonoBehaviour
             StartCoroutine(MoveSceneTransition());
         }
 
-        progressCircle.fillAmount = Mathf.Clamp01(_blowingTime * 0.333f);
+        progressCircle.fillAmount = Mathf.Clamp01(_blowingTime);
     }
 
     IEnumerator MoveSceneTransition() {

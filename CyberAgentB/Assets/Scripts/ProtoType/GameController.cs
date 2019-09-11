@@ -8,14 +8,14 @@ public class GameController
     public static GameController Instance = new GameController(); 
     public PlayerModel Player = new PlayerModel();
     public int Score = 0;
-    public int Time = 10;
+    public int Time = 30;
     public int LifeCount = 3;
     public Action TakenDamageAction;
 
     public void Reset() {
         Player = new PlayerModel();
         Score = 0;
-        Time = 10;
+        Time = 30;
         LifeCount = 3;
     }
 
@@ -34,8 +34,21 @@ public class GameController
     }
 
     public void GameOver(){
-    
-        Debug.Log("GameOver!!");
+        // Debug.Log("GameOver!!");
+        // 結果画面に遷移
+        var rank = "A+";
+        var score = Score;
+
+        if (score < 100) {
+            rank = "C";
+        } else if (score < 200) {
+            rank = "B";
+        } else if (score < 300) {
+            rank = "A";
+        }
+
+        Reset();
+        ResultScreen.InvokeResultScreen(score, rank, false);
     }
 
     public void TakenDamage()
