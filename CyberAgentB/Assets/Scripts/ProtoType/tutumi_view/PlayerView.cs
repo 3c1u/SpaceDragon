@@ -20,7 +20,7 @@ public class PlayerView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameController.Instance.BulletSpawnPoint = BulletSpawnPoint.transform.position;
+        GameController.Instance.BulletSpawnPoint = this.gameObject;
         once = false;
     }
 
@@ -49,7 +49,7 @@ public class PlayerView : MonoBehaviour
         {
             if (!(Power < 0.3))
             {
-                var _bullet = Instantiate(Bullet);
+                var _bullet = Instantiate(Bullet,BulletSpawnPoint.transform.position-BulletSpawnPoint.transform.up,Quaternion.identity);
                 _bullet.transform.localScale = new Vector3(1, 1, 1) * Power;
                 Destroy(_bullet, 1f);
                 once = false;

@@ -11,7 +11,7 @@ public class GameController
     public int Time = 30;
     public int LifeCount = 3;
     public Action TakenDamageAction;
-    public Vector3 BulletSpawnPoint;
+    public GameObject BulletSpawnPoint;
 
     public void Reset() {
         Player = new PlayerModel();
