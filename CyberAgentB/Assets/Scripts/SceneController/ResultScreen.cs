@@ -50,30 +50,35 @@ public class ResultScreen : MonoBehaviour {
     };
 
     // VR時にシーン遷移を検知してシーン遷移
-    if (GameController.Instance.Player.Breath.isActive
-        && !_blowTransitionFlag
-        && _blowEnabled) {
-      _blowTransitionFlag = false;
-      StartCoroutine(BlowDetection());
+    if (!_blowEnabled)
+      return;
+    
+    if (GameController.Instance.Player.Breath.isActive) {
       progressCircle.fillAmount += 1.0f * Time.deltaTime;
+
+      if (!_blowTransitionFlag) {
+        _blowTransitionFlag = true;
+        StartCoroutine(nameof(BlowDetection));
+      }
+    } else if(progressCircle.fillAmount < 1.0f) {
+      StopCoroutine(nameof(BlowDetection));
+      progressCircle.fillAmount = 0;
+      _blowTransitionFlag = false;
     }
   }
 
   IEnumerator BlowDetection() {
-    if (!GameController.Instance.Player.Breath.isActive) {
-      progressCircle.fillAmount = 0;
-      _blowTransitionFlag = true;
-      yield break;
-    }
-
     yield return new WaitForSeconds(1.0f);
 
+    if(!_blowTransitionFlag)
+      yield break;
+    
     progressCircle.fillAmount = 1.0f;
     yield return ReplayTransition();
   }
 
   IEnumerator ReplayTransition() {
-    StopCoroutine(StartupAnimation());
+    StopCoroutine(nameof(StartupAnimation));
 
     iTween.MoveBy(progressCircle.gameObject, iTween.Hash("y", -300f,
                                    "time", 2.0f,
