@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour
 
             phi = Random.Range(0, 30);
 
-            if (75 < theta || theta < 105)
+            if (75 < theta && theta < 105)
                 phi = 0;
 
             x = r * Mathf.Cos(Mathf.Deg2Rad*phi) * Mathf.Cos(Mathf.Deg2Rad*theta);
