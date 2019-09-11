@@ -91,7 +91,7 @@ public class ResultScreen : MonoBehaviour {
       var f = Mathf.Clamp01(i);
       var f_inv = (1 - f);
       fadeOverlay.color = new Color(0, 0, 0, f);
-      Camera.main.backgroundColor = new Color(camColor.r * f_inv, camColor.g * f_inv, camColor.b * f_inv, 1.0f);
+      // Camera.main.backgroundColor = new Color(camColor.r * f_inv, camColor.g * f_inv, camColor.b * f_inv, 1.0f);
 
       yield return new WaitForSeconds(0.01f);
     }
