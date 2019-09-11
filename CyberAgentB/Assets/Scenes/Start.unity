@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadePlane: {fileID: 338338757}
-  fadeCoefficient: 0.6
+  fadeCoefficient: 2
   blinkText: {fileID: 881200508}
   darkTextColour: {r: 1, g: 0.6068679, b: 0, a: 1}
   brightTextColour: {r: 1, g: 0.9201765, b: 0.7971698, a: 1}
