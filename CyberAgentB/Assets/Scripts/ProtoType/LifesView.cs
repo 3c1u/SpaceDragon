@@ -9,6 +9,8 @@ public class LifesView : MonoBehaviour
 {
     private int LifeCount => GameController.Instance.LifeCount;
     Queue<GameObject> _lifeQueue =  new Queue<GameObject>();
+
+    [SerializeField] AudioSource damage;
     
     private void Start()
     {
@@ -32,6 +34,7 @@ public class LifesView : MonoBehaviour
         {
             if (_lifeQueue != null)
             {
+                damage.Play();
                 var life = _lifeQueue.Peek();
                 Destroy(life.gameObject);
                 _lifeQueue.Dequeue();
