@@ -1,3 +1,5 @@
+// スパゲッティおいしい
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +18,16 @@ namespace SceneController {
     [SerializeField] private Color darkTextColour;
     [SerializeField] private Color brightTextColour;
 
+    private Color camColor;
+
     private bool sceneTransitionFlag = false;
 
     void Start() {
       isAnimating = true;
       isFadeIn = true;
+
+      camColor = Camera.main.backgroundColor;
+      Camera.main.backgroundColor = Color.black;
     }
 
     void Update() {
@@ -71,6 +78,11 @@ namespace SceneController {
       var prevColor = fadePlane.color;
       prevColor.a = opacity;
       fadePlane.color = prevColor;
+
+      Camera.main.backgroundColor = new Color(camColor.r * (1 - opacity),
+                                              camColor.g * (1 - opacity),
+                                              camColor.b * (1 - opacity),
+                                              1.0f);
     }
 
     void SwitchToGameScene() {
@@ -79,7 +91,7 @@ namespace SceneController {
       // ゲームの初期化
       
       // ステージ画面に遷移
-      SceneManager.LoadScene("Scenes/PreStageIntro");
+      SceneManager.LoadScene("Scenes/SCENE");
     }
 
     IEnumerator BlinkMessage() {
