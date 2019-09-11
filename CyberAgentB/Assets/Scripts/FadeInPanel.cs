@@ -6,11 +6,20 @@ using UnityEngine.UI;
 public class FadeInPanel : MonoBehaviour
 {
     private Image Image;
+
+    public GameObject GameObject;
+
+    private Animator Animator;
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        Image = GetComponent<Image>();
-        StartCoroutine(FadeOut());
+        GameObject.SetActive(true);
+        Animator = GameObject.GetComponent<Animator>();
+        Text text = GameObject.GetComponent<Text>();
+        text.text = "";
+        yield return StartCoroutine(FadeOut());
+        text.text = "GameStart!!";
+        Animator.SetBool("TextTrigger",true);
     }
 
     public IEnumerator FadeOut()
