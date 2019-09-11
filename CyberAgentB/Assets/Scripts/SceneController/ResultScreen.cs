@@ -11,6 +11,8 @@ public class ResultScreen : MonoBehaviour {
   [SerializeField] private GameObject rankLabel;
   [SerializeField] private GameObject resultNewRecordLabel;
   [SerializeField] private GameObject tapToReplayLabel;
+
+  [SerializeField] private Image progressCircle;
   
   [SerializeField] private Text scoreField;
   [SerializeField] private Text rankField;
@@ -22,6 +24,7 @@ public class ResultScreen : MonoBehaviour {
   private static bool   _newRecord = false;
 
   private bool _replayTransitionFlag = false;
+  private bool _blowTransitionFlag = false;
   
   public static void InvokeResultScreen(int score, string rank, bool isNewRecord) {
     _score = score;
@@ -34,6 +37,8 @@ public class ResultScreen : MonoBehaviour {
   void Start() {
     resultNewRecordLabel.SetActive(false);
     tapToReplayLabel.SetActive(false);
+
+    progressCircle.fillAmount = 0f;
   }
 
   void Update() {
@@ -42,35 +47,56 @@ public class ResultScreen : MonoBehaviour {
       _initialAnimation = true;
       StartCoroutine(StartupAnimation());
     };
-    
-    // ボタンが押された・タップされた場合にシーン遷移する。
-    if (Input.GetMouseButtonDown(0) && !_replayTransitionFlag) {
-      StartCoroutine(ReplayTransition());
+
+    // VR時にシーン遷移を検知してシーン遷移
+    if (GameController.Instance.Player.Breath.isActive && !_blowTransitionFlag) {
+      _blowTransitionFlag = false;
+      StartCoroutine(BlowDetection());
+      progressCircle.fillAmount += 1.0f * Time.deltaTime;
     }
-      
-    for (var i = 0; i < Input.touchCount; i++) {
-      if (_replayTransitionFlag)
-        break;
-      
-      StartCoroutine(ReplayTransition());
+  }
+
+  IEnumerator BlowDetection() {
+    if (!GameController.Instance.Player.Breath.isActive) {
+      progressCircle.fillAmount = 0;
+      _blowTransitionFlag = true;
+      yield break;
     }
-    
-    // TODO: VR時にシーン遷移を検知したい
+
+    yield return new WaitForSeconds(1.0f);
+
+    progressCircle.fillAmount = 1.0f;
+    yield return ReplayTransition();
   }
 
   IEnumerator ReplayTransition() {
-    iTween.MoveBy(tapToReplayLabel, iTween.Hash("y", -150f,
-                                   "time", 1.0f,
+    StopCoroutine(StartupAnimation());
+
+    iTween.MoveBy(progressCircle.gameObject, iTween.Hash("y", -300f,
+                                   "time", 2.0f,
                                    "delay", 0));
+    
+    iTween.MoveBy(tapToReplayLabel, iTween.Hash("y", -300f,
+                                   "time", 2.0f,
+                                   "delay", 0.2f));
+    
     yield return new WaitForSeconds(0.2f);
+
+    Color camColor = Camera.main.backgroundColor;
     
     for (float i = 0; i <= 1; i += 0.05f) {
-      fadeOverlay.color = new Color(0, 0, 0, Mathf.Clamp01(i));
+      var f = Mathf.Clamp01(i);
+      var f_inv = (1 - f);
+      fadeOverlay.color = new Color(0, 0, 0, f);
+      Camera.main.backgroundColor = new Color(camColor.r * f_inv, camColor.g * f_inv, camColor.b * f_inv, 1.0f);
+
       yield return new WaitForSeconds(0.01f);
     }
+
+    yield return new WaitForSeconds(1.0f);
     
     // シーン遷移する
-    SceneManager.LoadScene("Scenes/Start");
+    yield return SceneManager.LoadSceneAsync("Scenes/Start");
   }
   
   IEnumerator StartupAnimation() {
@@ -105,7 +131,7 @@ public class ResultScreen : MonoBehaviour {
     }
     
     tapToReplayLabel.SetActive(true);
-    SlideFromBottom(tapToReplayLabel);
+    // SlideFromBottom(tapToReplayLabel);
     yield return new WaitForSeconds(1.0f);
   }
 
