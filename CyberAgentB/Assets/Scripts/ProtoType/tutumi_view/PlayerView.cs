@@ -10,6 +10,7 @@ public class PlayerView : MonoBehaviour
     public UnityEngine.GameObject Fire;
     [SerializeField] private ParticleSystem out_fire;
     [SerializeField] private ParticleSystem in_fire;
+    [SerializeField] private GameObject BulletSpawnPoint;
 
     Vector3 Pos;
     Quaternion Rot;
@@ -19,6 +20,7 @@ public class PlayerView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameController.Instance.BulletSpawnPoint = BulletSpawnPoint.transform.position;
         once = false;
     }
 

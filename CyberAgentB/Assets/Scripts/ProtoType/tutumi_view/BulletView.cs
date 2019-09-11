@@ -23,7 +23,8 @@ public class BulletView : MonoBehaviour
     void Start()
     {
         //halo = (Behaviour)this.transform.GetComponent("Halo");
-        forwardVec = Camera.main.transform.forward;
+        forwardVec = GameController.Instance.BulletSpawnPoint;
+//        forwardVec = Camera.main.transform.forward;
         this.transform.position = 1.0f * forwardVec - 0.6f * Camera.main.transform.up;
 
         once = true;
