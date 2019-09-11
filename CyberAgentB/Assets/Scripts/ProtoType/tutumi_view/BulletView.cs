@@ -19,12 +19,17 @@ public class BulletView : MonoBehaviour
     private RockManager _rockManager;
     private int middleHP;
 
+    public GameObject Explosion;
+
     // Start is called before the first frame update
     void Start()
     {
         //halo = (Behaviour)this.transform.GetComponent("Halo");
-        forwardVec = Camera.main.transform.forward;
-        this.transform.position = 1.0f * forwardVec - 0.6f * Camera.main.transform.up;
+        forwardVec = GameController.Instance.BulletSpawnPoint.transform.forward;
+        //        forwardVec = Camera.main.transform.forward;
+        //this.transform.position = 1.0f * forwardVec - 0.6f * Camera.main.transform.up;
+
+        this.transform.position -= GameController.Instance.BulletSpawnPoint.transform.up;
 
         once = true;
     }
@@ -71,6 +76,7 @@ public class BulletView : MonoBehaviour
     {
         if (other.gameObject.tag == "Rock")
         {
+            Instantiate(Explosion, other.gameObject.transform.position, Quaternion.identity);
             Debug.Log("Rock");
             HitTarget(other.gameObject);
         }

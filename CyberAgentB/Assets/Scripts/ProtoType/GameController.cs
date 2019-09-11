@@ -8,15 +8,16 @@ public class GameController
     public static GameController Instance = new GameController(); 
     public PlayerModel Player = new PlayerModel();
     public int Score = 0;
-    public int Time = 30;
-    public int LifeCount = 3;
+    public int Time = 60;
+    public int LifeCount = 5;
     public Action TakenDamageAction;
+    public GameObject BulletSpawnPoint;
 
     public void Reset() {
         Player = new PlayerModel();
         Score = 0;
-        Time = 30;
-        LifeCount = 3;
+        Time = 60;
+        LifeCount = 5;
     }
 
     public void AddScore(int score)

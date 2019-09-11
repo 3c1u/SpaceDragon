@@ -11,6 +11,8 @@ public class FireView : MonoBehaviour
 
     bool once;
 
+    public GameObject Explosion;
+
     private void Start()
     {
         once = true;
@@ -23,6 +25,9 @@ public class FireView : MonoBehaviour
                 Debug.Log("氷");
                 var manager = other.GetComponent<IceManager>();
                 HitTarget(other);
+
+            Instantiate(Explosion, other.gameObject.transform.position, Quaternion.identity);
+                
         }else if (other.gameObject.tag == "Rock")
         {
             Debug.Log("Rock");
