@@ -6,6 +6,8 @@ using UnityEngine.XR;
 
 public class SingleRender : MonoBehaviour
 {
+    [SerializeField] bool useDeviceRotation = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,9 @@ public class SingleRender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!useDeviceRotation)
+            return;
+        
         Camera.main.transform.rotation = InputTracking.GetLocalRotation(XRNode.CenterEye);
     }
 }
